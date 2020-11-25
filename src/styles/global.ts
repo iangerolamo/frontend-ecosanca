@@ -8,15 +8,15 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, input, button {
-    font: 16px Roboto, sans-serif;
+  body, input, button, textarea {
+    font: 600 18px Roboto, sans-serif;
   }
 
-  #root {
+  /* #root {
     max-width: 960px;
     margin: 0 auto;
     padding: 40px 20px;
-  }
+  } */
 
   button {
     cursor: pointer;

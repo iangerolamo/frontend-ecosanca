@@ -2,12 +2,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Landing from '../pages/Landing';
-import RecyclesMap from '../pages/RecyclesMap';
+import EcorecyclesMap from '../pages/EcorecyclesMap';
+import CreateEcorecycle from '../pages/CreateEcorecycle';
+import Ecorecycle from '../pages/Ecorecycle';
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Landing} />
-    <Route path="/recyclesmap" component={RecyclesMap} />
+    <Route path="/recyclesmap" component={EcorecyclesMap} />
+    <Route path="/recycle/create" component={CreateEcorecycle} />
+    <Route path="/recycles/:id" component={Ecorecycle} />
   </Switch>
 );
 
