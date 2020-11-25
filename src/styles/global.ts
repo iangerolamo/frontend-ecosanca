@@ -8,6 +8,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    color: #FFF;
+    background: #ebf2f5;
+  }
+
   body, input, button, textarea {
     font: 600 18px Roboto, sans-serif;
   }
