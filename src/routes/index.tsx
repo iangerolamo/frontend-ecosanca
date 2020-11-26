@@ -9,7 +9,7 @@ import Ecorecycle from '../pages/Ecorecycle';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Landing} />
-    <Route path="/recyclesmap" component={EcorecyclesMap} />
+    <Route path="/app" component={EcorecyclesMap} />
     <Route path="/recycle/create" component={CreateEcorecycle} />
     <Route path="/recycles/:id" component={Ecorecycle} />
   </Switch>
