@@ -2,10 +2,33 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
 
   position: relative;
   display: flex;
+
+  .create-ecorecycle {
+        position: absolute;
+        right: 40px;
+        bottom: 40px;
+
+        z-index: 100;
+
+        width: 64px;
+        height: 64px;
+        background: #15C3D6;
+        border-radius: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: background-color 0.2s;
+
+        &:hover {
+            background: #17D6ED;
+        }
+    }
 `;
 
 export const ContentWrapper = styled.aside`
