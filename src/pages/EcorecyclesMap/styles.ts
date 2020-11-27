@@ -7,6 +7,10 @@ export const Container = styled.div`
   position: relative;
   display: flex;
 
+  .leaflet-container {
+    z-index: 5;
+  }
+
   .create-ecorecycle {
         position: absolute;
         right: 40px;
