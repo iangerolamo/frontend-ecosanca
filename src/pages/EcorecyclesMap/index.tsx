@@ -1,46 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { FiPlus, FiArrowRight } from 'react-icons/fi';
+import {
+  MapContainer, Marker, Popup, TileLayer,
+} from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 
-import mapMarkerImg from '../../assets/logoSide.png';
+import logoSide from '../../assets/logoSide.png';
+// import mapMarkerImg from '../../assets/map-marker.svg';
+
+import mapIcon from '../../utils/mapIcon';
 
 import { Container, ContentWrapper } from './styles';
 
+import api from '../../services/api';
+
 const mapBoxURL = `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
-const EcorecyclesMap: React.FC = () => (
-  <>
-    <Container>
-      <ContentWrapper>
-        <header>
-          <img src={mapMarkerImg} alt="ecosanca" />
-          <h2>Escolha um ponto de coleta no mapa</h2>
-          <p>Quando for jogar algo fora, repense. Não existe fora.</p>
-        </header>
+interface Recycle {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
 
-        <footer>
-          <strong>São Carlos</strong>
-          <span>São Paulo</span>
-        </footer>
-      </ContentWrapper>
+const EcorecyclesMap: React.FC = () => {
+  const [recycles, setRecycles] = useState<Recycle[]>([]);
 
-      <MapContainer
-        center={[-21.9993935, -47.8919809]}
-        zoom={15.5}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <TileLayer url={mapBoxURL} />
-      </MapContainer>
+  useEffect(() => {
+    api.get('/recycles').then((response) => {
+      setRecycles(response.data);
+    });
+  }, []);
 
-      <Link to="/" className="create-ecorecycle">
-        <FiPlus size={32} color="#FFF" />
-      </Link>
+  return (
+    <>
+      <Container>
+        <ContentWrapper>
+          <header>
+            <img src={logoSide} alt="ecosanca" />
+            <h2>Escolha um ponto de coleta no mapa</h2>
+            <p>Quando for jogar algo fora, repense. Não existe fora.</p>
+          </header>
 
-    </Container>
-  </>
-);
+          <footer>
+            <strong>São Carlos</strong>
+            <span>São Paulo</span>
+          </footer>
+        </ContentWrapper>
+
+        <MapContainer
+          center={[-21.9993935, -47.8919809]}
+          zoom={15.5}
+          style={{ width: '100%', height: '100%' }}
+        >
+          <TileLayer url={mapBoxURL} />
+
+          {recycles.map((recycle) => (
+            <Marker
+              key={recycle.id}
+              icon={mapIcon}
+              position={[recycle.latitude, recycle.longitude]}
+            >
+              <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
+                {recycle.name}
+                <Link to={`/recycles/${recycle.id}`}>
+                  <FiArrowRight size={20} color="#FFF" />
+                </Link>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+
+        <Link to="/recycles/create" className="create-recycles">
+          <FiPlus size={32} color="#FFF" />
+        </Link>
+      </Container>
+    </>
+  );
+};
 
 export default EcorecyclesMap;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+
 import logoImg from '../../assets/logoimg.png';
 
 import { Container, ContentWrapper } from './styles';

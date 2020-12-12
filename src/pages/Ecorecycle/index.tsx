@@ -1,5 +1,141 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { FiClock, FiInfo } from 'react-icons/fi';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { useParams } from 'react-router-dom';
 
-const Ecorecycle: React.FC = () => <h1>Olá</h1>;
+import '../../styles/pages/recycle.css';
+import Sidebar from '../../components/Sidebar';
 
-export default Ecorecycle;
+import mapIcon from '../../utils/mapIcon';
+import api from '../../services/api';
+
+interface Recycle {
+    name: string;
+    latitude: number;
+    longitude: number;
+    about: string;
+    instructions: string;
+    opening_hours: string;
+    open_on_weekends: string;
+    images: Array<{
+        id: string;
+        url: string;
+    }>
+}
+
+interface RecycleParams {
+    id: string;
+}
+
+const Recycle: React.FC = () => {
+  const params = useParams<RecycleParams>();
+  const [recycle, setRecycle] = useState<Recycle>();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    api.get(`recycles/${params.id}`).then((response) => {
+      setRecycle(response.data);
+    });
+  }, [params.id]);
+
+  if (!recycle) {
+    return <p>Carregando...</p>;
+  }
+
+  return (
+    <div id="page-recycle">
+      <Sidebar />
+
+      <main>
+        <div className="recycle-details">
+          <img src={recycle.images[activeImageIndex].url} alt={recycle.name} />
+
+          <div className="images">
+            {recycle.images.map((image, index) => (
+              <button
+                className={activeImageIndex === index ? 'active' : ''}
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
+              >
+                <img key={image.id} src={image.url} alt="Lar das meninas" />
+              </button>
+            ))}
+          </div>
+
+          <div className="recycle-details-content">
+            <h1>{recycle.name}</h1>
+            <p>{recycle.about}</p>
+
+            <div className="map-container">
+              <MapContainer
+                center={[recycle.latitude, recycle.longitude]}
+                zoom={16}
+                style={{ width: '100%', height: 280 }}
+                dragging={false}
+                touchZoom={false}
+                zoomControl={false}
+                scrollWheelZoom={false}
+                doubleClickZoom={false}
+              >
+                <TileLayer
+                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                />
+                <Marker
+                  interactive={false}
+                  icon={mapIcon}
+                  position={[recycle.latitude, recycle.longitude]}
+                />
+              </MapContainer>
+
+              <footer>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${recycle.longitude},${recycle.longitude}`}
+                >
+                  Ver rotas no Google Maps
+                </a>
+              </footer>
+            </div>
+
+            <hr />
+
+            <h2>Instruções para visita</h2>
+            <p>{recycle.instructions}</p>
+
+            <div className="open-details">
+              <div className="hour">
+                <FiClock size={32} color="#15B6D6" />
+                {recycle.opening_hours}
+              </div>
+
+              {recycle.open_on_weekends ? (
+                <div className="open-on-weekends">
+                  <FiInfo size={32} color="#39CC83" />
+                  {recycle.open_on_weekends}
+                </div>
+              ) : (
+                <div className="open-on-weekends dont-open">
+                  <FiInfo size={32} color="#FF669D" />
+                  Não atendemos
+                  {' '}
+                  <br />
+                  {' '}
+                  fim de semana
+                </div>
+              )}
+            </div>
+
+            <button type="button" className="contact-button">
+              <FaWhatsapp size={20} color="#FFF" />
+              Entrar em contato
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Recycle;
