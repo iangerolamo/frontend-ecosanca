@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 import { useHistory } from 'react-router-dom';
+import { Modal } from 'antd';
 
 import { FiPlus } from 'react-icons/fi';
 
@@ -22,10 +23,42 @@ const CreateEcorecycle: React.FC = () => {
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   function handleMapClick(event: LeafletMouseEvent) {
     const { lat, lng } = event.latlng;
-    setPosition({ latitude: lat, longitude: lng });
+
+    setPosition({
+      latitude: lat,
+      longitude: lng,
+    });
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    const { latitude, longitude } = position;
+
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('about', about);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('instructions', instructions);
+    data.append('opening_hours', opening_hours);
+    data.append('open_on_weekends', String(open_on_weekends));
+
+    images.forEach((image) => {
+      data.append('images', image);
+    });
+
+    await api.post('ecorecycles', data);
+
+    // eslint-disable-next-line no-alert
+    alert('Cadastro realizado com sucesso!');
+
+    history.push('/app');
   }
 
   function handleSelectImages(event: ChangeEvent<HTMLInputElement>) {
@@ -39,32 +72,17 @@ const CreateEcorecycle: React.FC = () => {
     setPreviewImages(selectedImagesPreview);
   }
 
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-    const { latitude, longitude } = position;
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
 
-    const formData = new FormData();
-
-    formData.append('name', name);
-    formData.append('about', about);
-    formData.append('latitude', String(latitude));
-    formData.append('longitude', String(longitude));
-    formData.append('instructions', instructions);
-    formData.append('opening_hours', opening_hours);
-    formData.append('open_on_weekends', String(open_on_weekends));
-
-    images.forEach((image) => {
-      formData.append('images', image);
-    });
-
-    await api.post('/recycles', formData);
-
-    // eslint-disable-next-line no-alert
-    alert('Cadastro realizado com sucesso!');
-
-    history.push('/app');
-  }
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div id="page-create-recycle">
@@ -75,11 +93,11 @@ const CreateEcorecycle: React.FC = () => {
           <fieldset>
             <legend>Dados</legend>
 
-            <MapContainer
+            <Map
               center={[-21.9993935, -47.8919809]}
               style={{ width: '100%', height: 280 }}
               zoom={15}
-              // onclick={handleMapClick}
+              onclick={handleMapClick}
             >
               <TileLayer
                 url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
@@ -96,7 +114,7 @@ const CreateEcorecycle: React.FC = () => {
               />
               )}
 
-            </MapContainer>
+            </Map>
 
             <div className="input-block">
               <label htmlFor="name">Nome</label>
@@ -181,9 +199,19 @@ const CreateEcorecycle: React.FC = () => {
             </div>
           </fieldset>
 
-          <button className="confirm-button" type="submit">
+          <button className="confirm-button" type="submit" onClick={showModal}>
             Confirmar
           </button>
+          <Modal
+            title="Basic Modal"
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
         </form>
       </main>
     </div>

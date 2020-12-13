@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import {
-  MapContainer, Marker, Popup, TileLayer,
+  Map, Marker, Popup, TileLayer,
 } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -29,7 +29,7 @@ const EcorecyclesMap: React.FC = () => {
   const [recycles, setRecycles] = useState<Recycle[]>([]);
 
   useEffect(() => {
-    api.get('/recycles').then((response) => {
+    api.get('/ecorecycles').then((response) => {
       setRecycles(response.data);
     });
   }, []);
@@ -50,7 +50,7 @@ const EcorecyclesMap: React.FC = () => {
           </footer>
         </ContentWrapper>
 
-        <MapContainer
+        <Map
           center={[-21.9993935, -47.8919809]}
           zoom={15.5}
           style={{ width: '100%', height: '100%' }}
@@ -65,15 +65,15 @@ const EcorecyclesMap: React.FC = () => {
             >
               <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
                 {recycle.name}
-                <Link to={`/recycles/${recycle.id}`}>
+                <Link to={`/ecorecycle/${recycle.id}`}>
                   <FiArrowRight size={20} color="#FFF" />
                 </Link>
               </Popup>
             </Marker>
           ))}
-        </MapContainer>
+        </Map>
 
-        <Link to="/recycles/create" className="create-recycles">
+        <Link to="/ecorecycle/create" className="create-ecorecycle">
           <FiPlus size={32} color="#FFF" />
         </Link>
       </Container>

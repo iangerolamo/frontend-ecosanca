@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiClock, FiInfo } from 'react-icons/fi';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 
 import '../../styles/pages/recycle.css';
@@ -34,7 +34,7 @@ const Recycle: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    api.get(`recycles/${params.id}`).then((response) => {
+    api.get(`ecorecycles/${params.id}`).then((response) => {
       setRecycle(response.data);
     });
   }, [params.id]);
@@ -68,7 +68,7 @@ const Recycle: React.FC = () => {
             <p>{recycle.about}</p>
 
             <div className="map-container">
-              <MapContainer
+              <Map
                 center={[recycle.latitude, recycle.longitude]}
                 zoom={16}
                 style={{ width: '100%', height: 280 }}
@@ -86,7 +86,7 @@ const Recycle: React.FC = () => {
                   icon={mapIcon}
                   position={[recycle.latitude, recycle.longitude]}
                 />
-              </MapContainer>
+              </Map>
 
               <footer>
                 <a

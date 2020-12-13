@@ -10,8 +10,8 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Landing} />
     <Route path="/app" component={EcorecyclesMap} />
-    <Route path="/recycle/create" component={CreateEcorecycle} />
-    <Route path="/recycles/:id" component={Ecorecycle} />
+    <Route path="/ecorecycle/create" component={CreateEcorecycle} />
+    <Route path="/ecorecycles/:id" component={Ecorecycle} />
   </Switch>
 );
 
