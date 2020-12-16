@@ -1,4 +1,4 @@
-<h1 align="center">Next Level Week #03. Project "Happy".</h1>
+<h1 align="center">Project "Ecosanca".</h1>
 
 <p align="center">
   <a href="#-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="Happy" src=".github/happy.png" width="100%">
+  <img alt="Happy" src=".github/ecosanca.png" width="100%">
 </p>
 
 <h2 align="center">About 📖</h2>
