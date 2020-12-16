@@ -48,7 +48,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Ecosanca é uma aplicação que conecta pessoas à casas de acolhimento institucional para fazer o dia de muitas crianças mais feliz 💜
+O Ecosanca é uma aplicação qu...... 💜
 
 ## :memo: Licença
 
