@@ -58,6 +58,7 @@ This project is under the MIT license. See the [LICENSE] file (LICENSE.md) for m
 
 <p align="center">
   <img alt="Ecosanca" src=".github/ecosanca.gif" width="100%">
+  <img alt="Ecosanca" src=".github/createEcorecycle.gif" width="100%">
 </p>
 
 <br>
