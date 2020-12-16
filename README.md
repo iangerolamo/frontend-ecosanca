@@ -1,4 +1,4 @@
-<h1 align="center">Project "Ecosanca".</h1>
+<h1 align="center">Projeto "Ecosanca".</h1>
 <p align="center">
   <a href="#-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -27,9 +27,7 @@
    - ✅ "Up to two years in 2 months" 🔥
    - ✅ "The extra mile" 🚀
    
----
-
-<h1 align="center">Projeto Ecosanca</h1>
+## Visualizando a aplicação
 
 <p align="center">
   <img alt="Ecosanca" src=".github/ecosanca.gif" width="100%">
