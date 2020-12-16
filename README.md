@@ -1,8 +1,8 @@
 <h1 align="center">Projeto "Ecosanca".</h1>
 <p align="center">
   <a href="#-about">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-technologies">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projet">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
@@ -10,7 +10,7 @@
   <img alt="Ecosanca" src=".github/ecosanca.png" width="100%">
 </p>
 
-<h2 align="center">About 📖</h2>
+<h2>About 📖</h2>
    
    <p align="center">
       The Happy project, developed during the Next Level Week, from <a href="https://rocketseat.com.br/">Rocketseat</a>, from the 12th to the 18th of October.<br>
@@ -56,4 +56,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Feito com ♥ by Kemuel Batista
+Feito por Ian Gerolamo
