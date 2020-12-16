@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Modal } from 'antd';
 
 import { FiPlus } from 'react-icons/fi';
+import 'leaflet/dist/leaflet.css';
 
 import '../../styles/pages/create-ecorecycle.css';
 import Sidebar from '../../components/Sidebar';

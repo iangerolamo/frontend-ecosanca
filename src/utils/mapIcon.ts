@@ -1,5 +1,5 @@
 import Leaftlet from 'leaflet';
-import mapMarkerImg from '../assets/map-marker.svg';
+import mapMarkerImg from '../assets/yellowLogo.png';
 
 const mapIcon = Leaftlet.icon({
   iconUrl: mapMarkerImg,

@@ -65,7 +65,7 @@ const EcorecyclesMap: React.FC = () => {
             >
               <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
                 {recycle.name}
-                <Link to={`/ecorecycle/${recycle.id}`}>
+                <Link to={`/ecorecycles/${recycle.id}`}>
                   <FiArrowRight size={20} color="#FFF" />
                 </Link>
               </Popup>

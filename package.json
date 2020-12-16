@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.8",
     "antd": "^4.9.2",
     "axios": "^0.21.0",
+    "google-maps-react": "^2.0.6",
     "leaflet": "^1.7.1",
     "polished": "^4.0.3",
     "react": "^17.0.1",
