@@ -1,5 +1,4 @@
 <h1 align="center">Project "Ecosanca".</h1>
-
 <p align="center">
   <a href="#-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -9,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img alt="Happy" src=".github/ecosanca.png" width="100%">
+  <img alt="Ecosanca" src=".github/ecosanca.png" width="100%">
 </p>
 
 <h2 align="center">About 📖</h2>
@@ -55,10 +54,10 @@ This project is under the MIT license. See the [LICENSE] file (LICENSE.md) for m
 
 ---
 
-<h1 align="center">Projeto Happy - NLW #03</h1>
+<h1 align="center">Projeto Ecosanca</h1>
 
 <p align="center">
-  <img alt="Happy" src=".github/Web.gif" width="100%">
+  <img alt="Ecosanca" src=".github/ecosanca.gif" width="100%">
 </p>
 
 <br>
@@ -75,7 +74,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Happy é uma aplicação que conecta pessoas à casas de acolhimento institucional para fazer o dia de muitas crianças mais feliz 💜
+O Ecosanca é uma aplicação que conecta pessoas à casas de acolhimento institucional para fazer o dia de muitas crianças mais feliz 💜
 
 ## 🔖 Layout
 
